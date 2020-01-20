@@ -1,0 +1,22 @@
+Steps To Be Followed For Device Connection
+
+
+
+step1: 
+            In  Menu select  device. option
+
+step 2:
+            click on yes in a popup message to activate bluetooth in mobile
+
+step3:
+             click on bluetooth option in device page and allow device to access the mobile location
+
+step4: 
+             After clicking on bluetooth button near by bluetooth devices list will displayed, select the device through which data to be recived.
+
+step5: 
+              After selcting the device will ask password for pairing if it is for first time login, submit password and return  to home page.
+             (password: 1234)
+
+step6: 
+              the data sended by device will be re ceived and will be updated in app as per the delay.

@@ -1,0 +1,42 @@
+<ion-header color="primary">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="startScanning()">
+        <ion-icon slot="icon-only" name="bluetooth"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Devices
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+
+      <h5 *ngIf="gettingDevices">
+         Searching For Devices
+         <ion-spinner name="crescent" *ngIf="gettingDevices"></ion-spinner>
+      </h5>
+
+
+      <ion-item class="back" *ngFor='let device of dist_arr'>
+        <span (click)="selectDevice(device)">
+          {{device.name}}
+        </span>
+      </ion-item>
+
+
+    </ion-list>
+    
+    <!--<ion-button expand="block" fill="outline" (click)="data()">Start Receiving Data</ion-button>
+    <ion-item>
+      <p class="fon" *ngFor='let message of array'>
+          {{message}}
+      </p>
+    </ion-item>-->
+</ion-content>

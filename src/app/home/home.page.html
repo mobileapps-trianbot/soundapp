@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" color="primary">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      NBC EMB vs NBC STD Bearing
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="margin:5px;">
+    <div>
+      <div style="margin:5px;">
+        <h2 class="fs-18">Sensor values</h2>
+      </div>
+      <ion-row>
+        <ion-col size="6">
+          <div class="new-style-val">
+            <div class="pdtop-5">
+              <h5 class="ion-text-center fs-16 first-color">NBC EMB Bearing</h5>
+            </div>
+            <div>
+              <h2 class="ion-text-center fs-32 first-color">{{firstValue}}</h2>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div class="new-style-val">
+            <div class="pdtop-5">
+              <h5 class="ion-text-center fs-16 second-color">NBC Normal Bearing</h5>
+            </div>
+            <div>
+              <h2 class="ion-text-center fs-32 second-color">{{secondValue}}</h2>
+            </div>
+          </div>
+        </ion-col>
+        <!-- <ion-col size="4">
+          <div class="new-style-val">
+            <div class="pdtop-5">
+              <h5 class="ion-text-center fs-16">Shaft RPM</h5>
+            </div>
+            <div>
+              <h2 class="ion-text-center fs-32">{{rpmValue}}</h2>
+            </div>
+          </div>
+        </ion-col> -->
+      </ion-row>
+    </div>
+
+    <!--<div id="dynamicSpline" style="width:100%; height:240px;"></div>-->
+   
+  </div>
+ <div style="margin:5px;">
+    <div [chart]="dynamicSpline1" class="chart"></div>
+  </div>
+  <!--<div style="margin:5px;">
+    <div [chart]="chartSpeed"></div>
+  </div>-->
+</ion-content>
+<ion-footer class="foote">
+  &nbsp;&nbsp;&nbsp;
+  </ion-footer>
