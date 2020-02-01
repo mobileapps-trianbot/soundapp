@@ -1,4 +1,6 @@
- import { DataService } from './../data.service';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { DataService } from './../data.service';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { Component, OnInit, NgZone } from '@angular/core';
 import * as HighCharts from 'highcharts';
@@ -28,13 +30,34 @@ export class HomePage implements OnInit{
   thirdValue: any = 0;
   rpmValue: any = 0;
   columnChart:any;
-  constructor(private bluetoothSerial: BluetoothSerial, public dataService: DataService, private ngZone: NgZone) {
+  constructor(private bluetoothSerial: BluetoothSerial, public dataService: DataService, 
+              private ngZone: NgZone, public alertCtrl: AlertController, public router: Router) {
+    this.bluetoothSerial.enable();
   }
 
   ngOnInit() {
-    var $this=this;
-    console.log("on init");
-    this.bluetoothSerial.isConnected().then(data => {
+   
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      header: 'Connect',
+      message: 'Device not connected.Please connect to device once',
+      buttons: [{
+          text: 'Okay',
+          handler: () => {
+            this.router.navigate(['/list']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  getData() {
+  var $this=this;
+  this.bluetoothSerial.isConnected().then(data => {
         console.log(data);
         if(data = "0K"){
           setInterval(function() {
@@ -70,7 +93,7 @@ export class HomePage implements OnInit{
               console.log(err);
               $this.firstValue = '';
               $this.secondValue = '';
-              $this.thirdValue='';
+              $this.thirdValue = '';
             });
           }, 1000);
         }
@@ -82,9 +105,30 @@ export class HomePage implements OnInit{
   ionViewDidEnter() {
     console.log("view enter");
     // this.plotSimpleSplineChart();
+    var $this=this;
+    if( localStorage.getItem('devicedata') == null ){
+      this.presentAlertConfirm();
+    }else{
+      console.log(JSON.parse(localStorage.getItem('devicedata')));
+      var device = JSON.parse(localStorage.getItem('devicedata'));
+      this.bluetoothSerial.isConnected().then(data => {
+        if(data = "0K"){
+          $this.getData();
+        }
+      },err => {
+        console.log(err);
+        $this.bluetoothSerial.connect(device.address).subscribe(data => {
+          console.log(data);
+          $this.getData();
+        // this.deviceConnected();
+        }, $this.fail);
+      });
+    }
     this.plotSimpleSplineChart1();
     // this.plotColumnChart();
   }
+
+  fail = (error) => alert(error);
 
   // getDataChart() {
   //   var $this = this;
@@ -206,7 +250,7 @@ export class HomePage implements OnInit{
                   series1.addPoint([x, parseInt($this.secondValue)], true, true);
                   // series2.addPoint([x, parseInt($this.secondValue)], true, true);
                 }
-              }, 750);
+              }, 500);
           }
         }
       },

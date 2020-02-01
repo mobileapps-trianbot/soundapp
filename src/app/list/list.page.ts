@@ -40,6 +40,7 @@ export class ListPage implements OnInit {
     this.bluetoothSerial.discoverUnpaired().then((success) => {
       this.unpairedDevices = success;
       console.log(this.unpairedDevices);
+      this.temparry = [];
      
       // var index: any;
       // for(index in this.unpairedDevices){
@@ -51,12 +52,10 @@ export class ListPage implements OnInit {
       // }
       var index: any;
       for(index in this.unpairedDevices){
-if(this.unpairedDevices[index].name){
-  console.log("not empty",this.unpairedDevices[index]);
- 
-  this.temparry.push(this.unpairedDevices[index]);
-}
-      
+         if(this.unpairedDevices[index].name){
+           console.log("not empty",this.unpairedDevices[index]);
+           this.temparry.push(this.unpairedDevices[index]);
+         }
       }
       this.dist_arr = _.uniqBy(this.temparry, 'name');
       console.log("device  list here",this.dist_arr)
@@ -130,7 +129,9 @@ if(this.unpairedDevices[index].name){
           text: 'Connect',
           handler: () => {
             this.bluetoothSerial.connect(device.address).subscribe(data => {
-              this.success(data,device);
+              localStorage.setItem('devicedata',JSON.stringify(device));
+              this.success(data, device);
+              console.log(device);
               // this.deviceConnected();
             }, this.fail);
 
@@ -139,7 +140,7 @@ if(this.unpairedDevices[index].name){
       ]
     }).then(res => {
       res.present();
-    })
+    });
 
   }
 
