@@ -3,17 +3,20 @@
     <ion-buttons slot="start" color="primary">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      NBC EMB vs NBC STD Bearing
+    <ion-title >
+      <img src="../../assets/icon/logo2.png" class="width-logo1">
+      <img src="../../assets/icon/logo-.png" class="width-logo">
+     
+   
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen="true">
   <div style="margin:5px;">
     <div>
       <div style="margin:5px;">
-        <h2 class="fs-18">Sensor values</h2>
+        <h2 class="fs-18 text-center"> NBC EMB vs NBC STD Bearing</h2>
       </div>
       <ion-row>
         <ion-col size="6">
@@ -22,7 +25,7 @@
               <h5 class="ion-text-center fs-16 first-color">NBC EMB Bearing</h5>
             </div>
             <div>
-              <h2 class="ion-text-center fs-32 first-color">{{firstValue}}</h2>
+              <h2 class="ion-text-center fs-32 first-color">{{firstValue}} dB</h2>
             </div>
           </div>
         </ion-col>
@@ -32,7 +35,7 @@
               <h5 class="ion-text-center fs-16 second-color">NBC Normal Bearing</h5>
             </div>
             <div>
-              <h2 class="ion-text-center fs-32 second-color">{{secondValue}}</h2>
+              <h2 class="ion-text-center fs-32 second-color">{{secondValue}} dB</h2>
             </div>
           </div>
         </ion-col>
@@ -58,6 +61,9 @@
   <!--<div style="margin:5px;">
     <div [chart]="chartSpeed"></div>
   </div>-->
+  <div class="footer-text">
+    Disclaimer:This is only a reference study of bearing noise is an open envinorment.Actual study is conducted in Anechoic chamber in NEI R&D
+    </div>
 </ion-content>
 <ion-footer class="foote">
   &nbsp;&nbsp;&nbsp;

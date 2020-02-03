@@ -107,7 +107,7 @@ export class HomePage implements OnInit{
     // this.plotSimpleSplineChart();
     var $this=this;
     if( localStorage.getItem('devicedata') == null ){
-      this.presentAlertConfirm();
+     this.presentAlertConfirm();
     }else{
       console.log(JSON.parse(localStorage.getItem('devicedata')));
       var device = JSON.parse(localStorage.getItem('devicedata'));
@@ -233,6 +233,7 @@ export class HomePage implements OnInit{
         type: 'line',
         animation: true, // don't animate in old IE
         marginRight: 10,
+        backgroundColor: null,
         // height: 670,
         events: {
           load: function () {
