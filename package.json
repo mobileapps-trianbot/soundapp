@@ -29,7 +29,7 @@
     "cordova-android": "8.1.0",
     "cordova-plugin-bluetooth-serial": "^0.4.7",
     "core-js": "^2.5.4",
-    "highcharts": "^7.2.1",
+    "highcharts": "^7.2.2",
     "moment": "^2.24.0",
     "rxjs": "~6.5.1",
     "rxjs-compat": "^6.5.3",
